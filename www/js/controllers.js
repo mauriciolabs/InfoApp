@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('infoApp.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -41,16 +41,36 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
+.controller('MyStocksCtrl', ['$scope',                  
+function($scope) {
+    
+  $scope.myStocksArray = [
+      {ticker: "AAPL"},
+      {ticker: "GPRO"},
+      {ticker: "FB"},
+      {ticker: "NFXL"},
+      {ticker: "TSLA"},
+      {ticker: "BRK-A"},
+      {ticker: "INTC"},
+      {ticker: "MSFT"},
+      {ticker: "GE"},
+      {ticker: "BAC"},
+      {ticker: "C"},
+      {ticker: "T"}
   ];
-})
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+}])
+
+.controller('StockCtrl', ['$scope', '$stateParams', '$http', function($scope, $stateParams, $http) {
+    
+    
+//    http://finance.yahoo.com/webservice/v1/symbols/YHOO/quote?format=json&view=detail
+    
+    $http.get("https://www.quandl.com/api/v3/datasets/WIKI/FB/data.json?api_key=uyp_MZUsryW6aAU2Knw5").then(function(jsonData){
+        console.log(jsonData);
+    });
+    
+    $scope.ticker = $stateParams.stockTicker;
+    
+    
+}]);

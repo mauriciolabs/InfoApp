@@ -61,16 +61,38 @@ function($scope) {
 
 }])
 
-.controller('StockCtrl', ['$scope', '$stateParams', '$http', function($scope, $stateParams, $http) {
+.controller('StockCtrl', ['$scope', '$stateParams', 'stockDataService', function($scope, $stateParams, stockDataService) {
     
     
 //    http://finance.yahoo.com/webservice/v1/symbols/YHOO/quote?format=json&view=detail
-    
-    $http.get("https://www.quandl.com/api/v3/datasets/WIKI/FB/data.json?api_key=uyp_MZUsryW6aAU2Knw5").then(function(jsonData){
-        console.log(jsonData);
+    //         $http.get("https://www.alphavantage.co/query?apikey=OZ9JC8B321CT4KET&function=TIME_SERIES_DAILY&symbol=MSFT").then(function(jsonData){
+//        console.log(jsonData.data["Meta Data"]);
+//        console.log(jsonData.data["Time Series (Daily)"]);
+//    });
+    $scope.$on("$ionicView.afterEnter", function(){
+        getPriceData();
+        getDetailsData();
     });
     
-    $scope.ticker = $stateParams.stockTicker;
+    function getPriceData(){
+        
+        $scope.ticker = $stateParams.stockTicker;
+        var promise = stockDataService.getPriceData($scope.ticker);
+        promise.then(function(data){
+        console.log(data);
+    });
+       
+    }
+    
+    function getDetailsData(){
+        
+        $scope.ticker = $stateParams.stockTicker;
+        var promise = stockDataService.getDetailsData($scope.ticker);
+        promise.then(function(data){
+        console.log(data);
+    });
+       
+    }
     
     
 }]);

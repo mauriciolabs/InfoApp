@@ -79,7 +79,8 @@ function($scope) {
         $scope.ticker = $stateParams.stockTicker;
         var promise = stockDataService.getPriceData($scope.ticker);
         promise.then(function(data){
-        console.log(data);
+            $scope.stockPriceData = data;
+//        console.log($scope.stockPriceData["Meta Data"]["5. Time Zone"]);
     });
        
     }
@@ -89,7 +90,8 @@ function($scope) {
         $scope.ticker = $stateParams.stockTicker;
         var promise = stockDataService.getDetailsData($scope.ticker);
         promise.then(function(data){
-        console.log(data);
+            $scope.stockDetailsData = data;
+//        console.log(data);
     });
        
     }

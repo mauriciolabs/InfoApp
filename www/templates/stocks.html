@@ -2,15 +2,15 @@
  <div class="bar bar-subheader bar-light">
      <div class="buttons" side="left">
          <div class="button button-clear">
-             <h6>Company name Inc.</h6>
+             <h6>Name: {{stockPriceData["Meta Data"]["2. Symbol"]}}</h6>
          </div>
      </div>
      
-     <h2 class="title button-left button-right">1000.5000</h2>
+     <h2 class="title button-left button-right">{{stockPriceData["Time Series (Daily)"]["2018-08-14"]["1. open"] | currency}}</h2>
      
      <div class="buttons" side="right">
          <div class="button button-clear">
-             <h6>+100.0000%</h6>
+             <h6>{{stockPriceData["Time Series (Daily)"]["2018-08-14"]["4. close"] | number :1}}%</h6>
          </div>
      </div>
      
@@ -20,8 +20,27 @@
     <div class="card">
         <div class="item item-divider">Market Data</div>
         <div class="row row-center"></div>
-        <div class="col">Data:</div>
-        <div class="col">1000.5000</div>
+        <div class="col">Details:</div>
+        <div class="col">{{stockPriceData["Meta Data"]["1. Information"]}}</div>
+        <div class="col">Date Info.:</div>
+        <div class="col">{{stockPriceData["Meta Data"]["3. Last Refreshed"]}}</div>
+        
+        <div class="row row-center"></div>
+        <div class="col">Open:</div>
+        <div class="col">{{stockPriceData["Time Series (Daily)"]["2018-08-14"]["1. open"]}}</div>
+        <div class="col">High:</div>
+        <div class="col">{{stockPriceData["Time Series (Daily)"]["2018-08-14"]["2. high"]}}</div>
+        
+        <div class="row row-center"></div>
+        <div class="col">Low:</div>
+        <div class="col">{{stockPriceData["Time Series (Daily)"]["2018-08-14"]["3. low"]}}</div>
+        <div class="col">Close:</div>
+        <div class="col">{{stockPriceData["Time Series (Daily)"]["2018-08-14"]["4. close"]}}</div>
+        
+        <div class="row row-center"></div>
+        <div class="col">Volume:</div>
+        <div class="col">{{stockPriceData["Time Series (Daily)"]["2018-08-14"]["5. volume"]}}</div>
+        
     </div>
     
     <div class="card">
